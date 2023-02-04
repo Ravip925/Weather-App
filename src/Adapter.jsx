@@ -90,7 +90,7 @@ const Adapter = (props) => {
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
+        `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
       );
       setWeatherData(response.data);
     }
