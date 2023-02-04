@@ -132,7 +132,6 @@ const Home = ({ user }) => {
       </Info>
       <Wrapper>
         <h1>Today's Weather</h1>
-
         <Top>
           <BoxContainer>
             <input
@@ -143,7 +142,7 @@ const Home = ({ user }) => {
             <button onClick={handleCity}>Get Weather Data</button>
           </BoxContainer>
         </Top>
-        {weatherData && (
+        {weatherData ? (
           <Bottom>
             <p>City: {weatherData.name}</p>
             <p>
@@ -160,6 +159,8 @@ const Home = ({ user }) => {
               {Math.abs(weatherData.main.temp_min - 273.15).toFixed(1)}
             </p>
           </Bottom>
+        ) : (
+          ""
         )}
       </Wrapper>
     </Container>
