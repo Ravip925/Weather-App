@@ -17,7 +17,7 @@ export const AppContext = createContext(null);
 const Adapter = (props) => {
   const [user, setUser] = useState("");
   const [error, setError] = useState("");
-  const [city, setCity] = useState("Belgaum");
+  const [city, setCity] = useState(null);
   const [weatherData, setWeatherData] = useState({});
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
