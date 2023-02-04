@@ -142,7 +142,7 @@ const Home = ({ user }) => {
             <button onClick={handleCity}>Get Weather Data</button>
           </BoxContainer>
         </Top>
-        {weatherData ? (
+        {weatherData.main ? (
           <Bottom>
             <p>City: {weatherData.name}</p>
             <p>
