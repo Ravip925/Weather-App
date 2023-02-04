@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { AppContext } from "../../Adapter";
 import { mobile } from "../../Responsive";
 
+
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -15,6 +16,9 @@ const Container = styled.div`
     rgba(0, 188, 212, 1) 48%,
     rgba(238, 130, 238, 1) 100%
   );
+  ${mobile({
+    height:"115vh"
+  })}
 `;
 const Wrapper = styled.div`
   width: 100%;
@@ -47,6 +51,10 @@ const Bottom = styled.div`
     font-weight: 550;
     font-size: 1.4rem;
   }
+  ${mobile({
+    width:"90%",
+    padding:"15px 10px"
+  })}
 `;
 const BoxContainer = styled.div`
   display: flex;
@@ -115,7 +123,6 @@ const Home = ({ user }) => {
   const handleCity = () => {
     setCity(data);
   };
-  console.log(weatherData);
 
   return (
     <Container>

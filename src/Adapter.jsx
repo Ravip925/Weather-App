@@ -92,7 +92,6 @@ const Adapter = (props) => {
       const response = await axios.get(
         `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
       );
-      console.log(response);
       setWeatherData(response.data);
     }
     fetchData();
