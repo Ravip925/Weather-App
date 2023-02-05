@@ -17,7 +17,7 @@ export const AppContext = createContext(null);
 const Adapter = (props) => {
   const [user, setUser] = useState("");
   const [error, setError] = useState("");
-  const [city, setCity] = useState(null);
+  const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState({});
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const Adapter = (props) => {
           text: "Login successful",
           icon: "success",
         }).then(() => {
-          window.location = "/";
+          navigate("/");
         });
       })
       .catch((err) => {
@@ -85,12 +85,12 @@ const Adapter = (props) => {
       console.error(error);
     }
   };
-  //img generator
+  //weather
 
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
+        `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_API_KEY}&query=${city}`
       );
       setWeatherData(response.data);
     }

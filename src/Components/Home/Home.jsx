@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { AppContext } from "../../Adapter";
 import { mobile } from "../../Responsive";
 
-
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -17,7 +16,7 @@ const Container = styled.div`
     rgba(238, 130, 238, 1) 100%
   );
   ${mobile({
-    height:"115vh"
+    height: "115vh",
   })}
 `;
 const Wrapper = styled.div`
@@ -38,7 +37,7 @@ const Top = styled.div`
 const Bottom = styled.div`
   width: 30%;
   height: auto;
-  padding: 10px;
+  padding: 15px;
   background-color: #d6ecff;
   border-radius: 10px;
   display: flex;
@@ -46,14 +45,26 @@ const Bottom = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
+  position: relative;
+
+  img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    background-color: #165993;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 
   p {
     font-weight: 550;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
   ${mobile({
-    width:"90%",
-    padding:"15px 10px"
+    width: "90%",
+    padding: "15px 10px",
   })}
 `;
 const BoxContainer = styled.div`
@@ -117,11 +128,11 @@ const Info = styled.div`
 `;
 
 const Home = ({ user }) => {
-  const [data, setData] = useState("");
+  const [name, setName] = useState("");
   const { handleLogout, setCity, weatherData } = useContext(AppContext);
 
-  const handleCity = () => {
-    setCity(data);
+  const handleClick = () => {
+    setCity(name);
   };
 
   return (
@@ -135,32 +146,30 @@ const Home = ({ user }) => {
         <Top>
           <BoxContainer>
             <input
-              placeholder="Enter City"
+              placeholder="Enter Text"
               type="text"
-              onChange={(e) => setData(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
-            <button onClick={handleCity}>Get Weather Data</button>
+            <button onClick={handleClick}>Get Weather Data</button>
           </BoxContainer>
         </Top>
-        {weatherData.main ? (
+        {weatherData.current && (
           <Bottom>
-            <p>City: {weatherData.name}</p>
+            <img src={weatherData.current.weather_icons[0]} alt="weather_img" />
+            <hr style={{ width: "50%" }} />
+            <p>{`${weatherData.location.name}, ${weatherData.location.country}`}</p>
+            <hr style={{ width: "50%" }} />
             <p>
-              Temperature: {Math.abs(weatherData.main.temp - 273.15).toFixed(0)}
+              Temperature: {weatherData.current.temperature}
               °C
             </p>
-            <p>Humidity: {weatherData.main.humidity}%</p>
-            <p>
-              Max Temp :{" "}
-              {Math.abs(weatherData.main.temp_max - 273.15).toFixed(1)}
-            </p>
-            <p>
-              Min Temp :{" "}
-              {Math.abs(weatherData.main.temp_min - 273.15).toFixed(1)}
-            </p>
+            <hr style={{ width: "50%" }} />
+            <p>Humidity: {weatherData.current.humidity}%</p>
+            <hr style={{ width: "50%" }} />
+            <p>Description: {weatherData.current.weather_descriptions[0]}</p>
+            <hr style={{ width: "50%" }} />
+            <p>Visibility: {weatherData.current.visibility}</p>
           </Bottom>
-        ) : (
-          ""
         )}
       </Wrapper>
     </Container>
