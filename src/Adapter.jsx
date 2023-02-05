@@ -66,7 +66,7 @@ const Adapter = (props) => {
           text: "Login successful",
           icon: "success",
         }).then(() => {
-          navigate("/");
+          window.location = "/";
         });
       })
       .catch((err) => {
