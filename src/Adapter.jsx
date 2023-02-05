@@ -51,7 +51,7 @@ const Adapter = (props) => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        setUser(user.displayName);
+        setUser(user.displayName.toUpperCase());
       }
     });
   }, []);
