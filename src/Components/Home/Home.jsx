@@ -146,7 +146,7 @@ const Home = ({ user }) => {
         <Top>
           <BoxContainer>
             <input
-              placeholder="Enter Text"
+              placeholder="Enter City"
               type="text"
               onChange={(e) => setName(e.target.value)}
             />
